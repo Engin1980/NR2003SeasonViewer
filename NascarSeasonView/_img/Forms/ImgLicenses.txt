@@ -1,0 +1,21 @@
+﻿
+trophy_gold
+	http://findicons.com/icon/48262/trophy_gold?id=277988# - free
+
+checkered flag
+	http://www.iconarchive.com/show/super-vista-business-icons-by-iconshock/checkered-flag-icon.html - free for personal use
+
+actions-office-...
+	http://www.iconarchive.com/show/oxygen-icons-by-oxygen-icons.org/Actions-office-chart-line-stacked-icon.html - free
+
+faq
+	http://www.iconarchive.com/show/pretty-office-2-icons-by-custom-icon-design/FAQ-icon.html - free for non commercial
+
+table-import
+	http://www.iconarchive.com/show/farm-fresh-icons-by-fatcow/table-import-icon.html	- CCA
+
+node tree
+	http://www.iconarchive.com/show/farm-fresh-icons-by-fatcow/node-tree-icon.html - CCA
+
+colors
+	http://www.iconarchive.com/show/tulliana-2-icons-by-umut-pulat/colors-icon.html - LGPL

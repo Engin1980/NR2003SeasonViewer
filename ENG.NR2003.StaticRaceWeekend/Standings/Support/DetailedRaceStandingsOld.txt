@@ -1,0 +1,309 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using DetailedRaceStanding = ENG.NR2003.StaticRaceWeekend.Standings.Support.ComplexGap;
+using ID = System.Collections.Generic.SortedDictionary<
+  int,
+  ENG.NR2003.StaticRaceWeekend.Standings.Support.ComplexGap>;
+using OD = System.Collections.Generic.Dictionary<
+  int,
+  System.Collections.Generic.SortedDictionary<
+    int,
+    ENG.NR2003.StaticRaceWeekend.Standings.Support.ComplexGap>>;
+using ENG.NR2003.TelemetryEvents;
+
+
+namespace ENG.NR2003.StaticRaceWeekend.Standings.Support
+{
+  public class DetailedRaceStandings
+  {
+    private class DRSFiller
+    {
+      #region Nested
+      private class LapCrossingComparerByCrossedAt : IComparer<LapCrossing>
+      {
+
+        #region IComparer<LapCrossing> Members
+
+        public int Compare(LapCrossing x, LapCrossing y)
+        {
+          return x.CrossedAt.CompareTo(y.CrossedAt);
+        }
+
+        #endregion
+      }
+      #endregion Nested
+
+      private List<List<LapCrossing>> temp = new List<List<LapCrossing>>();
+      private Dictionary<int, int> lapIndexHistoryDictionary = new Dictionary<int, int>();
+      internal void Fill(List<TelemetryEvents.LapCrossing> laps, DetailedRaceStandings drs)
+      {
+        foreach (var item in laps)
+          RegisterLap(item);
+
+        for (int i = 0; i < temp.Count; i++)
+        {
+          CalculateLap(i);
+        }
+
+        drs.LapCount = temp.Count - 1; // kolo 0 se nepocita
+      }
+
+      private int GetLapIndex(int carIdx)
+      {
+        if (lapIndexHistoryDictionary.ContainsKey(carIdx))
+          return lapIndexHistoryDictionary[carIdx];
+        else
+        {
+          lapIndexHistoryDictionary.Add(carIdx, 0);
+          return 0;
+        }
+      }
+
+      private void SetLapIndex(int carIdx, int lapIndex)
+      {
+        lapIndexHistoryDictionary[carIdx] = lapIndex;
+      }
+
+      private void RegisterLap(TelemetryEvents.LapCrossing lapCrossing)
+      {
+        int lapIndex = GetLapIndex(lapCrossing.CarIdx);
+        SetLapIndex(lapCrossing.CarIdx, lapIndex + 1);
+
+        if (lapIndex >= temp.Count)
+          temp.Add(new List<LapCrossing>());
+
+        temp[lapIndex].Add(lapCrossing);
+      }
+
+      private void CalculateLap(int lapNumber)
+      {
+        SortAllLapCrossings();
+
+        LapCrossing firstDriverInCurrentLap = temp[lapNumber][0];
+
+        List<ComplexGap> lapData = new List<ComplexGap>();
+        ComplexGap cg;
+        cg = new ComplexGap()
+        {
+          CarIdx = firstDriverInCurrentLap.CarIdx,
+          CrossedAt = firstDriverInCurrentLap.CrossedAt,
+          Position = 1,
+          LapIndex = lapNumber,
+          ToFirst = new Gap(),
+          ToPrevious = new Gap()
+        };
+
+        lapData.Add(cg);
+
+        for (int i = 1; i < temp[lapNumber].Count; i++)
+        {
+          cg = CreateComplexGapForNextDriver(lapNumber, i);
+          lapData.Add(cg);
+        }
+      }
+
+      private ComplexGap CreateComplexGapForNextDriver(int lapNumber, int positionIndex)
+      {
+        LapCrossing currentLC = temp[lapNumber][positionIndex];
+        ComplexGap cg = new ComplexGap()
+        {
+          CarIdx = currentLC.CarIdx,
+          CrossedAt = currentLC.CrossedAt,
+          LapIndex = lapNumber,
+          Position = positionIndex + 1
+        };
+
+        FillComplexGapGaps(cg);
+
+        return cg;
+      }
+
+      private void FillComplexGapGaps(ComplexGap currentCG)
+      {
+        int firstLap = -1;
+        double firstTime = 0;
+        int prevLap = -1;
+        double prevTime = 0;
+
+        firstLap = GetLapIndexOfFirstBeforeCrossingTime(currentCG.CrossedAt, currentCG.LapIndex);
+        firstTime = temp[currentCG.LapIndex][0].CrossedAt;
+
+        prevLap = GetLapIndexOFPreviousBeforeCrossingTime(
+          currentCG.CrossedAt,
+          temp[currentCG.LapIndex][currentCG.Position - 2].CarIdx,
+          currentCG.LapIndex);
+        prevTime = temp[currentCG.LapIndex][currentCG.Position - 2].CrossedAt;
+
+        firstLap = firstLap - currentCG.LapIndex;
+        prevLap = prevLap - currentCG.LapIndex;
+        firstTime = firstTime - currentCG.CrossedAt;
+        prevTime = prevTime - currentCG.CrossedAt;
+
+        Gap g;
+        g = new Gap(firstLap, firstTime);
+        currentCG.ToFirst = g;
+        g = new Gap(prevLap, prevTime);
+        currentCG.ToPrevious = g;
+      }
+
+      private int GetLapIndexOFPreviousBeforeCrossingTime(double time, int previousCarIdx, int startLapIndex)
+      {
+        int ret = 0;
+        for (int i = startLapIndex; i < temp.Count; i++)
+        {
+          for (int j = 0; j < temp[i].Count; j++)
+          {
+            if (temp[i][j].CarIdx == previousCarIdx)
+              if (temp[i][j].CrossedAt < time)
+              {
+                ret = i;
+                break;
+              }
+              else
+                return ret;
+          }
+        }
+
+        return ret;
+      }
+
+      private int GetLapIndexOfFirstBeforeCrossingTime(double time, int startLapIndex)
+      {
+        for (int i = startLapIndex; i < temp.Count; i++)
+        {
+          if (temp[i][0].CrossedAt > time)
+            return i - 1;
+        }
+
+        return temp.Count - 1;
+      }
+
+      private void SortAllLapCrossings()
+      {
+        foreach (var fItem in temp)
+          fItem.Sort(new LapCrossingComparerByCrossedAt());
+      }
+    }
+
+    private int _LapCount = 0;
+    public int LapCount { get { return _LapCount; } internal set { _LapCount = value; } }
+    private OD inner = new OD();
+    private DetailedRaceStanding GetOrNew(int carIdx, int raceLap)
+    {
+      DetailedRaceStanding ret = GetOrNull(carIdx, raceLap);
+
+      if (ret == null)
+      {
+        ret = new DetailedRaceStanding();
+        _Set(carIdx, raceLap, ret);
+      }
+
+      return ret;
+    }
+    public DetailedRaceStanding GetOrNull(int carIdx, int raceLap)
+    {
+      DetailedRaceStanding ret = null;
+      ID p = null;
+
+      if (inner.ContainsKey(carIdx) == false)
+        return null;
+
+      p = inner[carIdx];
+
+      if (p.ContainsKey(raceLap) == false)
+        return null;
+
+      ret = p[raceLap];
+
+      return ret;
+    }
+
+    private void _Set(int carIdx, int raceLap, DetailedRaceStanding drs)
+    {
+      ID p = null;
+
+      if (inner.ContainsKey(carIdx))
+        p = inner[carIdx];
+      else
+      {
+        p = new ID();
+        inner.Add(carIdx, p);
+      }
+      if (p.ContainsKey(raceLap))
+        p[raceLap] = drs;
+      else
+        p.Add(raceLap, drs);
+    }
+
+    public DetailedRaceStanding this[int carIdx, int raceLap]
+    {
+      get
+      {
+        var ret = GetOrNull(carIdx, raceLap);
+        return ret;
+      }
+      set
+      {
+        _Set(carIdx, raceLap, value);
+      }
+    }
+
+    public List<DetailedRaceStanding> GetLap(int lapIndex)
+    {
+      List<DetailedRaceStanding> ret = new List<DetailedRaceStanding>();
+
+      foreach (ID item in inner.Values)
+      {
+        if (item.ContainsKey(lapIndex))
+          ret.Add(item[lapIndex]);
+      }
+
+      ret.Sort(new ComplexGap.ByPositionComparer());
+
+      return ret;
+    }
+
+    public List<DetailedRaceStanding> GetCarIdx(int carIdx)
+    {
+      List<DetailedRaceStanding> ret = new List<DetailedRaceStanding>();
+
+      if (inner.ContainsKey(carIdx))
+        ret.AddRange(inner[carIdx].Values);
+
+      return ret;
+    }
+
+    [Obsolete("Use GetLap")]
+    public List<ComplexGap> GetStandingsOfLap(int lapNumber)
+    {
+      var ret = GetLap(lapNumber);
+      return ret;
+    }
+
+    internal int GetLapIndexByCrossedAt(double time)
+    {
+      int ret = 0;
+
+      for (int i = 0; i < LapCount; i++)
+      {
+        var lapData = GetLap(i);
+        var first = lapData[0];
+
+        if (first.CrossedAt > time)
+          return ret;
+        else
+          ret = i;
+      }
+
+      return LapCount - 1;
+    }
+
+    public DetailedRaceStandings(List<TelemetryEvents.LapCrossing> raceLapCrossings)
+    {
+      DetailedRaceStandings.DRSFiller drsf = new DRSFiller();
+      drsf.Fill(raceLapCrossings, this);
+    }
+  }
+}

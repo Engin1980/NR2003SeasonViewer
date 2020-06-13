@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ADA090A9-36E8-4470-83F6-BB10228D238A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ENG.NR2003.NascarSeasonView</RootNamespace>
+    <AssemblyName>NascarSeasonView</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>False</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>False</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ESystem, Version=4.0.4456.18752, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\ESystemSolution\FW 4.0\ESystem\bin\Debug\ESystem.dll</HintPath>
+    </Reference>
+    <Reference Include="ESystem.Forms">
+      <HintPath>..\..\ESystemSolution\FW 4.0\ESystem.Forms\bin\Debug\ESystem.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\NavigateableTrackSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NavigateableTrackSelector.Designer.cs">
+      <DependentUpon>NavigateableTrackSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NonRaceGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NonRaceGridView.Designer.cs">
+      <DependentUpon>NonRaceGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RaceGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RaceGridView.Designer.cs">
+      <DependentUpon>RaceGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SeasonStandingsGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SeasonStandingsGridView.Designer.cs">
+      <DependentUpon>SeasonStandingsGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WeekendOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WeekendOverview.Designer.cs">
+      <DependentUpon>WeekendOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmViewDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmViewDetails.Designer.cs">
+      <DependentUpon>FrmViewDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmInputBox.Designer.cs">
+      <DependentUpon>FrmInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmNewWeekend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmNewWeekend.Designer.cs">
+      <DependentUpon>FrmNewWeekend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSeason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSeason.Designer.cs">
+      <DependentUpon>FrmSeason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTelemetryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTelemetryView.Designer.cs">
+      <DependentUpon>FrmTelemetryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridRules\AddGridRule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridRules\AddGridRule.Designer.cs">
+      <DependentUpon>AddGridRule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListItem.cs" />
+    <Compile Include="Types\Charting\Extender.cs" />
+    <Compile Include="Types\Charting\Point.cs" />
+    <Compile Include="Types\Charting\Serie.cs" />
+    <Compile Include="Types\Cups\Cup.cs" />
+    <Compile Include="Types\Cups\CupRace.cs" />
+    <Compile Include="Types\Exceptions\ForUserException.cs" />
+    <Compile Include="Types\GridRules\GridRule.cs" />
+    <Compile Include="Types\GridRules\GridRuleCollection.cs" />
+    <Compile Include="Forms\GridRules\GridRulesEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridRules\GridRulesEditor.Designer.cs">
+      <DependentUpon>GridRulesEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Jobs\SimpleTelemetryLoading\SimpleTelemetryLoader.cs" />
+    <Compile Include="Jobs\SmartTelemetryAnalysing\SessionBlock.cs" />
+    <Compile Include="Jobs\SmartTelemetryAnalysing\SmartTelemetryAnalyser.cs" />
+    <Compile Include="Types\Common.cs" />
+    <Compile Include="Types\Dialogs.cs" />
+    <Compile Include="Forms\FrmImportLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmImportLog.Designer.cs">
+      <DependentUpon>FrmImportLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmIntro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmIntro.Designer.cs">
+      <DependentUpon>FrmIntro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmNewSeason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmNewSeason.Designer.cs">
+      <DependentUpon>FrmNewSeason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmRace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmRace.Designer.cs">
+      <DependentUpon>FrmRace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTrackEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTrackEdit.Designer.cs">
+      <DependentUpon>FrmTrackEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTrackList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTrackList.Designer.cs">
+      <DependentUpon>FrmTrackList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Jobs\UIJob.cs" />
+    <Compile Include="Types\GridRules\SerializableColor.cs" />
+    <Compile Include="Types\Hints\AbstractHint.cs" />
+    <Compile Include="Types\Hints\PitTimeHint.cs" />
+    <Compile Include="Types\Hints\QualifyTimeHint.cs" />
+    <Compile Include="Types\Views\RaceForChartSessionView.cs" />
+    <Compile Include="Types\Views\SeasonForChartView.cs" />
+    <Compile Include="Types\WindowManager.cs" />
+    <Compile Include="Types\BOs\EventFiller.cs" />
+    <Compile Include="Types\BOs\SeasonEvaluator.cs" />
+    <Compile Include="Types\BOs\SeasonWizard.cs" />
+    <Compile Include="Types\BOs\WeekendWizard.cs" />
+    <Compile Include="Types\TrackIniLoader.cs" />
+    <Compile Include="Types\Views\SeasonRacesView.cs" />
+    <Compile Include="Types\Views\DisplayAttribute.cs" />
+    <Compile Include="Types\Views\Display\DisplayItemWithLap.cs" />
+    <Compile Include="Types\Views\Display\DisplayMeanWithSum.cs" />
+    <Compile Include="Types\Views\Display\DisplaySumWithMean.cs" />
+    <Compile Include="Types\Views\Display\DisplayWithPercentage.cs" />
+    <Compile Include="Types\Views\Extender.cs" />
+    <Compile Include="Types\Views\NonRaceSessionView.cs" />
+    <Compile Include="Types\Views\RaceSessionView.cs" />
+    <Compile Include="Types\Views\TracksView.cs" />
+    <Compile Include="Types\Views\TracksViewItem.cs" />
+    <Compile Include="Types\Views\IView.cs" />
+    <Compile Include="Types\Views\WeekendStandingsView.cs" />
+    <Compile Include="Forms\FrmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmProgress.Designer.cs">
+      <DependentUpon>FrmProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\NavigateableTrackSelector.resx">
+      <DependentUpon>NavigateableTrackSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NonRaceGridView.resx">
+      <DependentUpon>NonRaceGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RaceGridView.resx">
+      <DependentUpon>RaceGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SeasonStandingsGridView.resx">
+      <DependentUpon>SeasonStandingsGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WeekendOverview.resx">
+      <DependentUpon>WeekendOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmViewDetails.resx">
+      <DependentUpon>FrmViewDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmImportLog.resx">
+      <DependentUpon>FrmImportLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmInputBox.resx">
+      <DependentUpon>FrmInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmIntro.resx">
+      <DependentUpon>FrmIntro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmNewSeason.resx">
+      <DependentUpon>FrmNewSeason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmNewWeekend.resx">
+      <DependentUpon>FrmNewWeekend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmRace.resx">
+      <DependentUpon>FrmRace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSeason.resx">
+      <DependentUpon>FrmSeason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmTelemetryView.resx">
+      <DependentUpon>FrmTelemetryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmTrackEdit.resx">
+      <DependentUpon>FrmTrackEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmTrackList.resx">
+      <DependentUpon>FrmTrackList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridRules\AddGridRule.resx">
+      <DependentUpon>AddGridRule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridRules\GridRulesEditor.resx">
+      <DependentUpon>GridRulesEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmProgress.resx">
+      <DependentUpon>FrmProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\NascarSeasonView._New.Forms.GridRules.GridRule.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ENG.NR2003.TelemetryEvents\ENG.NR2003.TelemetryEvents.csproj">
+      <Project>{52F18A45-9574-447A-B3BE-730B99AD47C7}</Project>
+      <Name>ENG.NR2003.TelemetryEvents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IniFile\IniFile.csproj">
+      <Project>{2DF797F4-D451-4FC8-A8FB-33B6B09298A8}</Project>
+      <Name>IniFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parentables\Parentables.csproj">
+      <Project>{AF3ADF46-E378-4C41-B457-16976CFE20FE}</Project>
+      <Name>Parentables</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Scorings\Scorings.csproj">
+      <Project>{96ACA345-630E-4EFF-8353-F213DD891B87}</Project>
+      <Name>Scorings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Types\Types.csproj">
+      <Project>{73D7ADF6-BAF9-4762-9675-E93027C3576F}</Project>
+      <Name>Types</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Progress\" />
+    <Folder Include="_img\MenuItems\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="_img\Forms\Actions-office-chart-line-stacked.ico" />
+    <Content Include="_img\Forms\checkered-flag.ico" />
+    <Content Include="_img\Forms\colors.ico" />
+    <Content Include="_img\Forms\FAQ.ico" />
+    <Content Include="_img\Forms\ImgLicenses.txt" />
+    <Content Include="_img\Forms\node-tree.ico" />
+    <Content Include="_img\Forms\table-import.ico" />
+    <Content Include="_img\Forms\trophy_gold.ico" />
+    <Content Include="_img\Forms\trophy_gold.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>REM if exist NascarSeasonView.exe ren "NascarSeasonView.exe" zzz__deleteThis_%25random%25.$$$"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{73D7ADF6-BAF9-4762-9675-E93027C3576F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Types</RootNamespace>
+    <AssemblyName>Types</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Types.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assert.cs" />
+    <Compile Include="Base\Minner.cs" />
+    <Compile Include="Base\Restricted.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="DriverStandings.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="NonRacePositionCollection.cs" />
+    <Compile Include="RaceGap.cs" />
+    <Compile Include="LapProvider.cs" />
+    <Compile Include="Base\Meaner.cs" />
+    <Compile Include="TrackIniFile.cs" />
+    <Compile Include="RacePit.cs" />
+    <Compile Include="RacePitCollection.cs" />
+    <Compile Include="RacePositionCollection.cs" />
+    <Compile Include="SessionLapCollection.cs" />
+    <Compile Include="TrackCollection.cs" />
+    <Compile Include="VirtualList.cs" />
+    <Compile Include="WeekendCollection.cs" />
+    <Compile Include="Season.cs" />
+    <Compile Include="Driver.cs" />
+    <Compile Include="DriverCollection.cs" />
+    <Compile Include="Lap.cs" />
+    <Compile Include="LapCollection.cs" />
+    <Compile Include="NonRaceLap.cs" />
+    <Compile Include="NonRaceSession.cs" />
+    <Compile Include="RaceLap.cs" />
+    <Compile Include="RaceSession.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="Time.cs" />
+    <Compile Include="Track.cs" />
+    <Compile Include="Weekend.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeekendInfo.cs" />
+    <Compile Include="WeekendInfoCollection.cs" />
+    <Compile Include="WeekendRealism.cs" />
+    <Compile Include="WeekendSettings.cs" />
+    <Compile Include="WeekendStandings.cs" />
+    <Compile Include="YellowPhase.cs" />
+    <Compile Include="YellowPhaseCollection.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Parentables\Parentables.csproj">
+      <Project>{AF3ADF46-E378-4C41-B457-16976CFE20FE}</Project>
+      <Name>Parentables</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
