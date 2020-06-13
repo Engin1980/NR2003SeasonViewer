@@ -52,10 +52,10 @@ Season result example:
 ## How does it work
 NR2003 game cannot simply collect all this information, but there is library which can read telemetry data from running race, like who and when cross finish line, current standings etc. This application collets those data into text telemetry file and process them to the statistics mentioned upper.
 To use you need to:
-# Start telemetry recorder (.exe application running in background) and insert text file name where captured data are stored
-# Start and play NR2003 - when game is quit the telemetry recorder will automatically quit too
-# Start NR2003 stats view
-# Create race from text file with captured data
-# Enjoy race statistics :-)
-# For multiple races create season and add created races
-# Enjoy season statistics :-)
+* Start telemetry recorder (.exe application running in background) and insert text file name where captured data are stored
+* Start and play NR2003 - when game is quit the telemetry recorder will automatically quit too
+* Start NR2003 stats view
+* Create race from text file with captured data
+* Enjoy race statistics :-)
+* For multiple races create season and add created races
+* Enjoy season statistics :-)
